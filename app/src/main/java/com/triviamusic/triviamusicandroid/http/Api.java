@@ -19,7 +19,11 @@ import org.json.JSONObject;
  */
 
 public class Api {
+<<<<<<< HEAD
     private String SERVER_IP = "10.0.2.2";
+=======
+    private String SERVER_IP = "192.168.1.182";
+>>>>>>> origin/master
     public static final String TAG = "API";
     private Context context;
     private RequestQueue queue;
@@ -31,7 +35,11 @@ public class Api {
         queue = RequestQueue_Singeton.getInstance(context).getRequestQueue();
     }
 
+<<<<<<< HEAD
     public void songs(String category, final VolleyCallback callback) {
+=======
+    public void songs(String category,final VolleyCallback callback) {
+>>>>>>> origin/master
         // Instantiate the RequestQueue.
 
         String url = "http://" + SERVER_IP + ":3000/songs/" + category;
@@ -50,7 +58,11 @@ public class Api {
             public void onErrorResponse(VolleyError error) {
                 Log.d("error", error.toString());
                 try {
+<<<<<<< HEAD
                     callback.onSuccess(new JSONObject("{\"result\":\"error\"}"));
+=======
+                    callback.onSuccess(new JSONObject("{error}"));
+>>>>>>> origin/master
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -97,7 +109,11 @@ public class Api {
         }
     }
 
+<<<<<<< HEAD
     public interface VolleyCallback {
+=======
+    public interface VolleyCallback{
+>>>>>>> origin/master
         void onSuccess(JSONObject result);
     }
 }
