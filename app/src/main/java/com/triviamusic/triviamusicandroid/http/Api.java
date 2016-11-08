@@ -10,6 +10,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.triviamusic.triviamusicandroid.resources.Song;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -19,11 +20,8 @@ import org.json.JSONObject;
  */
 
 public class Api {
-<<<<<<< HEAD
     private String SERVER_IP = "10.0.2.2";
-=======
-    private String SERVER_IP = "192.168.1.182";
->>>>>>> origin/master
+
     public static final String TAG = "API";
     private Context context;
     private RequestQueue queue;
@@ -35,17 +33,9 @@ public class Api {
         queue = RequestQueue_Singeton.getInstance(context).getRequestQueue();
     }
 
-<<<<<<< HEAD
-    public void songs(String category, final VolleyCallback callback) {
-=======
-    public void songs(String category,final VolleyCallback callback) {
->>>>>>> origin/master
-        // Instantiate the RequestQueue.
-
-        String url = "http://" + SERVER_IP + ":3000/songs/" + category;
-
+    private void call(String url, final VolleyCallback callback) {
         // Request a string response from the provided URL.
-        JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.GET, url, null,
+        JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -58,22 +48,26 @@ public class Api {
             public void onErrorResponse(VolleyError error) {
                 Log.d("error", error.toString());
                 try {
-<<<<<<< HEAD
-                    callback.onSuccess(new JSONObject("{\"result\":\"error\"}"));
-=======
-                    callback.onSuccess(new JSONObject("{error}"));
->>>>>>> origin/master
+                    callback.onSuccess(new JSONObject("{\"status\":\"error\"}"));
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
             }
         });
         // Set the tag on the request.
-        stringRequest.setTag(TAG);
+        jsonRequest.setTag(TAG);
         // Add the request to the RequestQueue.
         //queue.add(stringRequest);
         // Add a request (in this example, called stringRequest) to your RequestQueue.
-        RequestQueue_Singeton.getInstance(context).addToRequestQueue(stringRequest);
+        RequestQueue_Singeton.getInstance(context).addToRequestQueue(jsonRequest);
+    }
+
+    public void songs(String category, final VolleyCallback callback) {
+        // Instantiate the RequestQueue.
+
+        String url = "http://" + SERVER_IP + ":3000/songs/" + category;
+        call(url, callback);
     }
 
     public void home() {
@@ -109,11 +103,14 @@ public class Api {
         }
     }
 
-<<<<<<< HEAD
+    public void possibilities(Song song, final VolleyCallback callback) {
+
+        String url = "http://" + SERVER_IP + ":3000/possibilities/"+song.getAlbumId();
+        call(url, callback);
+    }
+
+
     public interface VolleyCallback {
-=======
-    public interface VolleyCallback{
->>>>>>> origin/master
         void onSuccess(JSONObject result);
     }
 }

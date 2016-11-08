@@ -12,6 +12,8 @@ public class Song {
     private String album;
     private String link;
     private String author;
+    private String album_id;
+    private String album_image;
 
     public Song(JSONObject result) {
         try {
@@ -19,6 +21,7 @@ public class Song {
             this.title = result.getString("title");
             this.author = result.getString("author");
             this.link = result.getString("link");
+            this.album_id =result.getString("album_id");
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -65,5 +68,9 @@ public class Song {
                 ", link='" + link + '\'' +
                 ", author='" + author + '\'' +
                 '}';
+    }
+
+    public String getAlbumId() {
+        return album_id;
     }
 }
