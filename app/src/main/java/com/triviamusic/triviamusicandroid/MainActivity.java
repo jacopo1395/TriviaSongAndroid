@@ -196,8 +196,8 @@ public class MainActivity extends AppCompatActivity implements ButtonsFragment.B
         round = savedInstanceState.getInt("round");
         turn.setNumberSong(round);
 
-        pointView.setText(points);
-        roundView.setText(round);
+        pointView.setText(String.valueOf(points));
+        roundView.setText(String.valueOf(round));
 
         PlayerFragment pf = (PlayerFragment) fm.findFragmentByTag("1");
         pf.setTurn(turn);
