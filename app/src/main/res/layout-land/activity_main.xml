@@ -71,21 +71,15 @@
         android:weightSum="2">
 
 
-        <fragment
+        <FrameLayout
             android:id="@+id/player_fragment"
-            android:name="android.app.DialogFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-
-            android:layout_alignParentTop="true"
             android:layout_weight="1"
             tools:layout="@layout/fragment_main_player" />
 
-        <fragment
+        <FrameLayout
             android:id="@+id/buttons_fragment"
-            android:name="android.app.DialogFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"

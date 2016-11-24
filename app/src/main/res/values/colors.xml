@@ -6,16 +6,9 @@
     <color name="my_black">#263238</color>
     <color name="my_white">#FAFAFA</color>
 
-    <color name="yellow1">#0071bc</color>
-    <color name="yellow2">#FF4081</color>
-    <color name="grey05">#0071bc</color>
-    <color name="orange4">#b68964</color>
-    <color name="orange5">#976d4e</color>
-    <color name="blue2">#0071bc</color>
-    <color name="blue25">#0071bc</color>
-
-    <color name="green1">#0071bc</color>
-    <color name="green2">#00cc4b</color>
+    <color name="blue">#0071bc</color>
+    <color name="pink">#FF4081</color>
+    <color name="green">#00cc4b</color>
     <color name="red">#cc0a00</color>
 
 

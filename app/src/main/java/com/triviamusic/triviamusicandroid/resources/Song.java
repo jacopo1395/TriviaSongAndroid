@@ -1,5 +1,8 @@
 package com.triviamusic.triviamusicandroid.resources;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -7,7 +10,7 @@ import org.json.JSONObject;
  * Created by jadac_000 on 05/11/2016.
  */
 
-public class Song {
+public class Song implements Parcelable {
     private String title;
     private String album;
     private String link;
@@ -72,5 +75,40 @@ public class Song {
 
     public String getAlbumId() {
         return album_id;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(title);
+        parcel.writeString(album);
+        parcel.writeString(author);
+        parcel.writeString(link);
+        parcel.writeString(album_id);
+        parcel.writeString(album_image);
+    }
+
+    public static final Parcelable.Creator<Song> CREATOR
+            = new Parcelable.Creator<Song>() {
+        public Song createFromParcel(Parcel in) {
+            return new Song(in);
+        }
+
+        public Song[] newArray(int size) {
+            return new Song[size];
+        }
+    };
+
+    private Song(Parcel in) {
+        title = in.readString();
+        album = in.readString();
+        author = in.readString();
+        link = in.readString();
+        album_id = in.readString();
+        album_image = in.readString();
     }
 }
