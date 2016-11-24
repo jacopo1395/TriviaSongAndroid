@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:theme="AppCompat.Light.NoActionBar"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -67,17 +66,15 @@
     </android.support.v7.widget.Toolbar>
 
 
-    <fragment
+    <FrameLayout
         android:id="@+id/player_fragment"
-        android:name="com.triviamusic.triviamusicandroid.MyFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
         tools:layout="@layout/fragment_main_player" />
 
-    <fragment
+    <FrameLayout
         android:id="@+id/buttons_fragment"
-        android:name="com.triviamusic.triviamusicandroid.MyFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"

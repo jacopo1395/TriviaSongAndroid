@@ -25,6 +25,7 @@ public class Api {
     public static final String TAG = "API";
     private Context context;
     private RequestQueue queue;
+    private int offset;
 
 
     public Api(Context context) {
@@ -109,8 +110,13 @@ public class Api {
         call(url, callback);
     }
 
+    public void setOffset(int i) {
+        this.offset=i;
+    }
+
 
     public interface VolleyCallback {
         void onSuccess(JSONObject result);
     }
+
 }
