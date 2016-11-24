@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:theme="AppCompat.Light.NoActionBar"
-    android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.triviamusic.triviamusicandroid.MainActivity"
+    android:layout_weight="1"
     android:orientation="vertical">
-
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
@@ -66,22 +64,32 @@
 
     </android.support.v7.widget.Toolbar>
 
-
-    <fragment
-        android:id="@+id/player_fragment"
-        android:name="com.triviamusic.triviamusicandroid.MyFragment"
+    <LinearLayout
+        android:id="@+id/activity_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"
-        tools:layout="@layout/fragment_main_player" />
-
-    <fragment
-        android:id="@+id/buttons_fragment"
-        android:name="com.triviamusic.triviamusicandroid.MyFragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        tools:layout="@layout/fragment_main_buttons" />
+        android:weightSum="2">
 
 
+        <fragment
+            android:id="@+id/player_fragment"
+            android:name="android.app.DialogFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+
+            android:layout_alignParentTop="true"
+            android:layout_weight="1"
+            tools:layout="@layout/fragment_main_player" />
+
+        <fragment
+            android:id="@+id/buttons_fragment"
+            android:name="android.app.DialogFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            tools:layout="@layout/fragment_main_buttons" />
+
+    </LinearLayout>
 </LinearLayout>

@@ -3,6 +3,7 @@ package com.triviamusic.triviamusicandroid;
 import android.graphics.Color;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -38,8 +39,7 @@ public class MainActivity extends AppCompatActivity implements MediaPlayer.OnCom
     public String category = "rock";
 
     private Turn turn;
-    private int numberTurn = 0;
-    private int points = 0;
+
     private String possibility1;
     private String possibility2;
     private String possibility3;
@@ -162,7 +162,12 @@ public class MainActivity extends AppCompatActivity implements MediaPlayer.OnCom
             if (checkAnswer(b)) {
                 MainActivity.this.addPoint();
             }
-            buttonRight.setBackgroundColor(Color.parseColor("green"));
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                buttonRight.setBackground(getResources().getDrawable(R.drawable.custom_button_green,getTheme()));
+            }
+            else{
+                buttonRight.setBackground(getResources().getDrawable(R.drawable.custom_button_green));
+            }
             if (!b.equals(buttonRight)) b.setBackgroundColor(Color.parseColor("red"));
             MainActivity.this.mediaPlayer.reset();
 
@@ -170,27 +175,7 @@ public class MainActivity extends AppCompatActivity implements MediaPlayer.OnCom
         }
     }
 
-    private void nextTurn() {
-//        imageButton.setVisibility(View.VISIBLE);
-//        imageButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                view.setVisibility(View.INVISIBLE);
-//                ((ImageButton)view).setOnClickListener(null);
-//            }
-//        });
-        numberTurn++;
-        button1.setBackgroundColor(Color.parseColor("grey"));
-        button2.setBackgroundColor(Color.parseColor("grey"));
-        button3.setBackgroundColor(Color.parseColor("grey"));
-        button4.setBackgroundColor(Color.parseColor("grey"));
-        if (numberTurn < turn.getNumberOfSongs()) getPossibilities();
-        else return;
-    }
 
-    public void addPoint() {
-        this.points++;
-    }
 
     public void getPossibilities() {
         api.possibilities(MainActivity.this.turn.getSongs().get(numberTurn), new Api.VolleyCallback() {
