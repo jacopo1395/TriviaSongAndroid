@@ -94,23 +94,31 @@ public class ButtonsFragment extends Fragment {
 
     public void setPossibilities(String[] poss) {
         String title = turn.getSongs().get(turn.getNumberSong()).getTitle();
-        possibility1 = poss[0];
-        if (possibility1.equals(title))
-            possibility1 = poss[4];
+        Random random = new Random();
+        int n = random.nextInt(4);
+        poss[n]=title;
+        setText(poss);
+        if(n==0) rightButton=button1;
+        if(n==1) rightButton=button2;
+        if(n==2) rightButton=button3;
+        if(n==3) rightButton=button4;
+//        possibility1 = poss[0];
+//        if (possibility1.equals(title))
+//            possibility1 = poss[4];
+//
+//        possibility2 = poss[1];
+//        if (possibility2.equals(title))
+//            possibility2 = poss[4];
+//
+//        possibility3 = poss[2];
+//        if (possibility3.equals(title))
+//            possibility3 = poss[4];
+//
+//        possibility4 = poss[3];
+//        if (possibility4.equals(title))
+//            possibility4 = poss[4];
 
-        possibility2 = poss[1];
-        if (possibility2.equals(title))
-            possibility2 = poss[4];
-
-        possibility3 = poss[2];
-        if (possibility3.equals(title))
-            possibility3 = poss[4];
-
-        possibility4 = poss[3];
-        if (possibility4.equals(title))
-            possibility4 = poss[4];
-
-        setButtons();
+//        setButtons();
 
     }
 
@@ -120,17 +128,22 @@ public class ButtonsFragment extends Fragment {
     }
 
     public void resetColor() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            button1.setBackground(getResources().getDrawable(R.drawable.custom_button, getActivity().getTheme()));
-            button2.setBackground(getResources().getDrawable(R.drawable.custom_button, getActivity().getTheme()));
-            button3.setBackground(getResources().getDrawable(R.drawable.custom_button, getActivity().getTheme()));
-            button4.setBackground(getResources().getDrawable(R.drawable.custom_button, getActivity().getTheme()));
-        } else {
-            button1.setBackground(getResources().getDrawable(R.drawable.custom_button));
-            button2.setBackground(getResources().getDrawable(R.drawable.custom_button));
-            button3.setBackground(getResources().getDrawable(R.drawable.custom_button));
-            button4.setBackground(getResources().getDrawable(R.drawable.custom_button));
-        }
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    button1.setBackground(getResources().getDrawable(R.drawable.custom_button, getActivity().getTheme()));
+                    button2.setBackground(getResources().getDrawable(R.drawable.custom_button, getActivity().getTheme()));
+                    button3.setBackground(getResources().getDrawable(R.drawable.custom_button, getActivity().getTheme()));
+                    button4.setBackground(getResources().getDrawable(R.drawable.custom_button, getActivity().getTheme()));
+                } else {
+                    button1.setBackground(getResources().getDrawable(R.drawable.custom_button));
+                    button2.setBackground(getResources().getDrawable(R.drawable.custom_button));
+                    button3.setBackground(getResources().getDrawable(R.drawable.custom_button));
+                    button4.setBackground(getResources().getDrawable(R.drawable.custom_button));
+                }
+            }
+        });
 
     }
 
