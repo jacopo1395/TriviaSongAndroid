@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
+import com.triviamusic.triviamusicandroid.resources.Categories;
+
 /**
  * Created by Jacopo on 24/11/2016.
  */
@@ -25,7 +27,7 @@ public class LauncherActivity extends AppCompatActivity {
 
         Log.d("LauncherActivity", "Network OK");
 
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, CategoryActivity.class);
         startActivity(intent);
 
         finish();

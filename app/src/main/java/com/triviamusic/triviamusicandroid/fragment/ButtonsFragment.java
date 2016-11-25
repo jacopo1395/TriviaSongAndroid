@@ -63,11 +63,24 @@ public class ButtonsFragment extends Fragment {
 //        imageView = (ImageView) findViewById(R.id.imageView);
         //imageButton = (ImageButton) findViewById(R.id.imageButton);
 
+        setListener();
+    }
+
+
+    public void setListener(){
         button1.setOnClickListener(new MyOnClickListener());
         button2.setOnClickListener(new MyOnClickListener());
         button3.setOnClickListener(new MyOnClickListener());
         button4.setOnClickListener(new MyOnClickListener());
     }
+
+    public void resetListener(){
+        button1.setOnClickListener(null);
+        button2.setOnClickListener(null);
+        button3.setOnClickListener(null);
+        button4.setOnClickListener(null);
+    }
+
 
 
     private void setButtons() {
@@ -128,9 +141,9 @@ public class ButtonsFragment extends Fragment {
     }
 
     public void resetColor() {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     button1.setBackground(getResources().getDrawable(R.drawable.custom_button, getActivity().getTheme()));
                     button2.setBackground(getResources().getDrawable(R.drawable.custom_button, getActivity().getTheme()));
@@ -142,8 +155,8 @@ public class ButtonsFragment extends Fragment {
                     button3.setBackground(getResources().getDrawable(R.drawable.custom_button));
                     button4.setBackground(getResources().getDrawable(R.drawable.custom_button));
                 }
-            }
-        });
+//            }
+//        });
 
     }
 
@@ -203,6 +216,7 @@ public class ButtonsFragment extends Fragment {
         @Override
         public void onClick(View view) {
             Log.d("ButtonFragment", "click");
+            resetListener();
             callback.ClickEvent((Button) view);
         }
 

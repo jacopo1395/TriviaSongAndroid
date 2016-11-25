@@ -65,7 +65,7 @@ public class Turn implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeList(songs);
+        parcel.writeTypedList(songs);
         parcel.writeInt(numberSong);
     }
 
@@ -82,7 +82,7 @@ public class Turn implements Parcelable {
 
     private Turn(Parcel in) {
         songs = new ArrayList<Song>();
-        songs = in.readArrayList(ArrayList.class.getClassLoader());
+        in.readTypedList(songs,Song.CREATOR);
         numberSong = in.readInt();
     }
 }

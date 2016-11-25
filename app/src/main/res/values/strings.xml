@@ -3,4 +3,19 @@
     <string name="ready">ready</string>
     <string name="round">Round</string>
     <string name="points">Points</string>
+    <string name="categories">Choose a Category</string>
+    <array name="categories">
+        <item>Rock</item>
+        <item>Metal</item>
+        <item>Pop</item>
+        <item>Indie/Alternative</item>
+        <item>EDM Dance</item>
+        <item>RnB</item>
+        <item>County</item>
+        <item>Folk Americana</item>
+        <item>Soul</item>
+        <item>Jazz</item>
+        <item>Blues</item>
+        <item>HipHop</item>
+    </array>
 </resources>

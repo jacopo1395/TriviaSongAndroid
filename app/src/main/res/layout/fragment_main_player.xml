@@ -11,7 +11,6 @@
     <ProgressBar
         android:id="@+id/progressBar"
         style="?android:attr/progressBarStyleHorizontal"
-        android:paddingTop= "16dp"
         android:layout_above="@+id/relativeLayout"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
@@ -22,7 +21,8 @@
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_margin="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
         android:layout_alignParentBottom="true">
 
         <ImageButton
@@ -57,8 +57,8 @@
 
     <ImageView
         android:id="@+id/album"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
         android:padding="16dp"
         app:srcCompat="@drawable/bigplayer"
         android:layout_above="@+id/progressBar"

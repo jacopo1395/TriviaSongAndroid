@@ -3,6 +3,7 @@ package com.triviamusic.triviamusicandroid;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -55,6 +56,8 @@ public class MainActivity extends AppCompatActivity implements ButtonsFragment.B
 
         if (flag) {
             flag = false;
+            Intent intent = getIntent();
+            turn=intent.getParcelableExtra("turn");
             getTurn();
         }
     }
@@ -86,25 +89,9 @@ public class MainActivity extends AppCompatActivity implements ButtonsFragment.B
 
 
     private void getTurn() {
-        //get 5 songs
-        api.songs(this.category, new Api.VolleyCallback() {
-            @Override
-            public void onSuccess(JSONObject result) {
-                try {
-                    if (result.getString("status").equals("error")) {
-                        Log.d("MainActivity", "error");
-                        return;
-                    }
-                } catch (JSONException e) {
-
-                }
-                MainActivity.this.turn = new Turn(result);
-                fragment1.setTurn(turn);
-                fragment2.setTurn(turn);
-                getPossibilities();
-
-            }
-        });
+        fragment1.setTurn(turn);
+        fragment2.setTurn(turn);
+        getPossibilities();
 
     }
 
@@ -142,9 +129,6 @@ public class MainActivity extends AppCompatActivity implements ButtonsFragment.B
     }
 
     private boolean checkAnswer(Button button) {
-        System.out.println(button);
-        System.out.println(fragment2);
-        System.out.println(fragment2.getRightButton());
         if (button.equals(fragment2.getRightButton())) return true;
         else return false;
     }
@@ -153,8 +137,10 @@ public class MainActivity extends AppCompatActivity implements ButtonsFragment.B
     private void nextSong() {
         turn.nextTurn();
         round++;
+        roundView.setText(String.valueOf(round));
         fragment1.resetAlbumImage();
         fragment2.resetColor();
+        fragment2.setListener();
         if (turn.getNumberSong() < turn.getNumberOfSongs()) getPossibilities();
         else return;
 
@@ -182,8 +168,6 @@ public class MainActivity extends AppCompatActivity implements ButtonsFragment.B
         ButtonsFragment bf = (ButtonsFragment) fm.findFragmentByTag("2");
         savedInstanceState.putStringArray("possibilities", bf.getPossibilities());
         savedInstanceState.putInt("rightbutton", bf.getRightButtonPos());
-        System.out.println(bf.getRightButtonPos());
-
 
         super.onSaveInstanceState(savedInstanceState);
     }
@@ -212,7 +196,6 @@ public class MainActivity extends AppCompatActivity implements ButtonsFragment.B
         bf.setText(savedInstanceState.getStringArray("possibilities"));
         int i = savedInstanceState.getInt("rightbutton");
         bf.setRightButtonPos(i);
-        System.out.println(i);
     }
 
 

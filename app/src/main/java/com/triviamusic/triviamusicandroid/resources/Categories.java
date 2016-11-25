@@ -19,7 +19,7 @@ public class Categories {
             "blues",
             "hiphop"};
 
-    static String[] getCategories() {
+    public static String[] getCategories() {
         return categories;
     }
 }
