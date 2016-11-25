@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">TriviaMusicAndroid</string>
+    <string name="app_name">Trivia Music</string>
     <string name="ready">ready</string>
     <string name="round">Round</string>
     <string name="points">Points</string>

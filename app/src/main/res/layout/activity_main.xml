@@ -4,6 +4,7 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:weightSum="2.3"
     tools:context="com.triviamusic.triviamusicandroid.MainActivity"
     android:orientation="vertical">
 
@@ -65,19 +66,22 @@
 
     </android.support.v7.widget.Toolbar>
 
-
-    <FrameLayout
+    <!--TODO: usare FrameLayout -->
+    <fragment
+        android:name="com.triviamusic.triviamusicandroid.fragment.PlayerFragment"
         android:id="@+id/player_fragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
         tools:layout="@layout/fragment_main_player" />
 
-    <FrameLayout
+    <!--TODO: usare FrameLayout -->
+    <fragment
+        android:name="com.triviamusic.triviamusicandroid.fragment.ButtonsFragment"
         android:id="@+id/buttons_fragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"
+        android:layout_weight="1.3"
         tools:layout="@layout/fragment_main_buttons" />
 
 
