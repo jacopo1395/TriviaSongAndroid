@@ -17,7 +17,7 @@ public class Turn implements Parcelable {
     private ArrayList<Song> songs;
 
     public Turn(JSONObject result) {
-        songs=new ArrayList<Song>(5);
+        songs = new ArrayList<Song>(5);
         try {
             int n = result.getInt("total");
             for (int i = 0; i < n; i++) {
@@ -35,6 +35,10 @@ public class Turn implements Parcelable {
 
     public ArrayList<Song> getSongs() {
         return songs;
+    }
+
+    public Song getSong() {
+        return songs.get(numberSong);
     }
 
     public int getNumberOfSongs() {

@@ -102,6 +102,7 @@ public class MainActivity extends AppCompatActivity implements ButtonsFragment.B
                 fragment1.setTurn(turn);
                 fragment2.setTurn(turn);
                 getPossibilities();
+
             }
         });
 
@@ -123,6 +124,7 @@ public class MainActivity extends AppCompatActivity implements ButtonsFragment.B
                     }
                     fragment2.setPossibilities(poss);
                     fragment1.setPlayer();
+                    fragment1.start();
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -151,10 +153,12 @@ public class MainActivity extends AppCompatActivity implements ButtonsFragment.B
     private void nextSong() {
         turn.nextTurn();
         round++;
-        fragment1.nextSong();
+        fragment1.resetAlbumImage();
         fragment2.resetColor();
         if (turn.getNumberSong() < turn.getNumberOfSongs()) getPossibilities();
         else return;
+
+
     }
 
     public void addPoint() {
@@ -215,6 +219,8 @@ public class MainActivity extends AppCompatActivity implements ButtonsFragment.B
     @Override
     public void ClickEvent(Button pressedButton) {
         //this.pressedButton=pressedButton;
+        fragment1.stop();
+        fragment1.showAlbum();
         if (checkAnswer(pressedButton)) {
             addPoint();
         }

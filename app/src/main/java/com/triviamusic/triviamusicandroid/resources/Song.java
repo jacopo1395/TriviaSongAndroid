@@ -25,6 +25,7 @@ public class Song implements Parcelable {
             this.author = result.getString("author");
             this.link = result.getString("link");
             this.album_id =result.getString("album_id");
+            this.album_image =result.getString("album_image");
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -61,6 +62,22 @@ public class Song implements Parcelable {
 
     public void setAuthor(String author) {
         this.author = author;
+    }
+
+    public String getAlbum_id() {
+        return album_id;
+    }
+
+    public void setAlbum_id(String album_id) {
+        this.album_id = album_id;
+    }
+
+    public String getAlbum_image() {
+        return album_image;
+    }
+
+    public void setAlbum_image(String album_image) {
+        this.album_image = album_image;
     }
 
     @Override

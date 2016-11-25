@@ -8,15 +8,6 @@
     tools:context="com.triviamusic.triviamusicandroid.MainActivity">
 
 
-    <ImageView
-        android:id="@+id/album"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_above="@+id/progressBar"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        app:srcCompat="@drawable/bigplayer" />
-
     <ProgressBar
         android:id="@+id/progressBar"
         style="?android:attr/progressBarStyleHorizontal"
@@ -63,4 +54,13 @@
             android:layout_marginRight="50dp"
             app:srcCompat="@android:drawable/ic_media_next" />
     </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/album"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:padding="16dp"
+        app:srcCompat="@drawable/bigplayer"
+        android:layout_above="@+id/progressBar"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>
