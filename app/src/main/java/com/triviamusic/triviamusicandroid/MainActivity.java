@@ -142,7 +142,13 @@ public class MainActivity extends AppCompatActivity implements ButtonsFragment.B
         fragment2.resetColor();
         fragment2.setListener();
         if (turn.getNumberSong() < turn.getNumberOfSongs()) getPossibilities();
-        else return;
+        else {
+            Intent i = new Intent(context, ScoreActivity.class);
+            startActivity(i);
+            finish();
+
+        }
+        ;
 
 
     }
