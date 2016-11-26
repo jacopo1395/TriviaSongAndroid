@@ -19,6 +19,8 @@ public class Song implements Parcelable {
     private String album_image;
     private int track_number;
 
+    private String[] possibilities;
+
     public Song(JSONObject result) {
         try {
             this.album = result.getString("album");

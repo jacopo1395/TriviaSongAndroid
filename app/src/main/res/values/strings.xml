@@ -29,6 +29,8 @@
     <string name="soul">Soul</string>
     <string name="jazz">Jazz</string>
     <string name="hiphop">HipHop</string>
+    <string name="signin_other_error">errore</string>
+    <string name="signin_failure">failure</string>
 
 
 </resources>
