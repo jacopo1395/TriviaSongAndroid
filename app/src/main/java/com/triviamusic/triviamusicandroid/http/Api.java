@@ -106,7 +106,7 @@ public class Api {
 
     public void possibilities(Song song, final VolleyCallback callback) {
 
-        String url = "http://" + SERVER_IP + ":3000/possibilities/"+song.getAlbumId();
+        String url = "http://" + SERVER_IP + ":3000/possibilities/" + song.getAlbumId() + "/" + song.getTrack_number();
         call(url, callback);
     }
 

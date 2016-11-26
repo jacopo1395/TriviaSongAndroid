@@ -18,4 +18,17 @@
         <item>Blues</item>
         <item>HipHop</item>
     </array>
+    <string name="rock">Rock</string>
+    <string name="metal">Metal</string>
+    <string name="pop">Pop</string>
+    <string name="indie_alt">Indie/Alternative</string>
+    <string name="edm_dance">EDM Dance</string>
+    <string name="rnb">RnB</string>
+    <string name="county">Country</string>
+    <string name="folk_americana">Folk Americana</string>
+    <string name="soul">Soul</string>
+    <string name="jazz">Jazz</string>
+    <string name="hiphop">HipHop</string>
+
+
 </resources>

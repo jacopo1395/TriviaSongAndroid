@@ -17,6 +17,7 @@ public class Song implements Parcelable {
     private String author;
     private String album_id;
     private String album_image;
+    private int track_number;
 
     public Song(JSONObject result) {
         try {
@@ -26,6 +27,7 @@ public class Song implements Parcelable {
             this.link = result.getString("link");
             this.album_id =result.getString("album_id");
             this.album_image =result.getString("album_image");
+            this.track_number = result.getInt("track_number");
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -80,6 +82,14 @@ public class Song implements Parcelable {
         this.album_image = album_image;
     }
 
+    public int getTrack_number() {
+        return track_number;
+    }
+
+    public void setTrack_number(int track_number) {
+        this.track_number = track_number;
+    }
+
     @Override
     public String toString() {
         return "Song{" +
@@ -87,6 +97,9 @@ public class Song implements Parcelable {
                 ", album='" + album + '\'' +
                 ", link='" + link + '\'' +
                 ", author='" + author + '\'' +
+                ", album_id='" + album_id + '\'' +
+                ", album_image='" + album_image + '\'' +
+                ", track_number=" + track_number +
                 '}';
     }
 
@@ -107,6 +120,7 @@ public class Song implements Parcelable {
         parcel.writeString(link);
         parcel.writeString(album_id);
         parcel.writeString(album_image);
+        parcel.writeInt(track_number);
     }
 
     public static final Parcelable.Creator<Song> CREATOR
@@ -127,5 +141,6 @@ public class Song implements Parcelable {
         link = in.readString();
         album_id = in.readString();
         album_image = in.readString();
+        track_number = in.readInt();
     }
 }
