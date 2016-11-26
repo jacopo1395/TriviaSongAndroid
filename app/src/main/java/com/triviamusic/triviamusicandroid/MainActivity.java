@@ -15,9 +15,6 @@ import com.triviamusic.triviamusicandroid.fragment.PlayerFragment;
 import com.triviamusic.triviamusicandroid.http.Api;
 import com.triviamusic.triviamusicandroid.resources.Turn;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 public class MainActivity extends AppCompatActivity implements ButtonsFragment.ButtonCallback, PlayerFragment.PlayerCallback {
     public Context context;
     private Api api;
@@ -58,7 +55,8 @@ public class MainActivity extends AppCompatActivity implements ButtonsFragment.B
             flag = false;
             Intent intent = getIntent();
             turn=intent.getParcelableExtra("turn");
-            getTurn();
+            fragment1.setTurn(turn);
+            fragment2.setTurn(turn);
         }
     }
 
@@ -91,35 +89,10 @@ public class MainActivity extends AppCompatActivity implements ButtonsFragment.B
     private void getTurn() {
         fragment1.setTurn(turn);
         fragment2.setTurn(turn);
-        getPossibilities();
-
+        fragment1.setPlayer();
+        fragment1.start();
     }
 
-    private void getPossibilities() {
-        api.possibilities(this.turn.getSongs().get(turn.getNumberSong()), new Api.VolleyCallback() {
-            @Override
-            public void onSuccess(JSONObject result) {
-                try {
-                    if (result.getString("status").equals("error")) {
-                        return;
-                    }
-                    int n = result.getInt("total");
-                    String[] poss = new String[n];
-                    for (int i = 0; i < n; i++) {
-                        String x = "possibility" + (i + 1);
-                        poss[i] = result.getString(x);
-                    }
-                    fragment2.setPossibilities(poss);
-                    fragment1.setPlayer();
-                    fragment1.start();
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-            }
-        });
-    }
 
 
     @Override
@@ -141,7 +114,10 @@ public class MainActivity extends AppCompatActivity implements ButtonsFragment.B
         fragment1.resetAlbumImage();
         fragment2.resetColor();
         fragment2.setListener();
-        if (turn.getNumberSong() < turn.getNumberOfSongs()) getPossibilities();
+        if (turn.getNumberSong() < turn.getNumberOfSongs()) {
+            fragment1.nextSong();
+            fragment2.setPossibilities();
+        }
         else return;
 
 

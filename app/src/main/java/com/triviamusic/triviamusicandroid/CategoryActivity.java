@@ -1,18 +1,16 @@
 package com.triviamusic.triviamusicandroid;
 
-import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.triviamusic.triviamusicandroid.http.Api;
+import com.triviamusic.triviamusicandroid.resources.Song;
 import com.triviamusic.triviamusicandroid.resources.Turn;
 
 import org.json.JSONException;
@@ -42,6 +40,8 @@ public class CategoryActivity extends AppCompatActivity {
             "blues",
             "hiphop"};
 
+    private int lastsong = 0;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -64,6 +64,10 @@ public class CategoryActivity extends AppCompatActivity {
         bar.setTitle(R.string.categories);
     }
 
+    private synchronized void setFlag() {
+        this.lastsong++;
+    }
+
     class MyClickListener implements AdapterView.OnItemClickListener {
         @Override
         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -81,10 +85,27 @@ public class CategoryActivity extends AppCompatActivity {
 
                     }
                     turn = new Turn(result);
-                    Intent in = new Intent(CategoryActivity.this, MainActivity.class);
-                    in.putExtra("turn", turn);
-                    startActivity(in);
-                    finish();
+                    for (int i = 0; i < turn.getNumberOfSongs(); i++) {
+                        System.out.println("chiamata api...");
+                        final Song s = turn.getSongs().get(i);
+                        api.possibilities(s, new Api.VolleyCallback() {
+                            @Override
+                            public void onSuccess(JSONObject result) {
+                                s.setPossibilities(result);
+                                setFlag();
+                                if (lastsong == turn.getNumberOfSongs()) {
+                                    Intent in = new Intent(CategoryActivity.this, MainActivity.class);
+                                    in.putExtra("turn", turn);
+                                    startActivity(in);
+                                    finish();
+                                }
+                            }
+                        });
+
+
+                    }
+
+
                 }
             });
         }

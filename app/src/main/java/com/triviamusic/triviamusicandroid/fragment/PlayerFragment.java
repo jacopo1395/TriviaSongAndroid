@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 
+import com.triviamusic.triviamusicandroid.LauncherActivity;
 import com.triviamusic.triviamusicandroid.R;
 import com.triviamusic.triviamusicandroid.resources.Turn;
 
@@ -90,6 +91,14 @@ public class PlayerFragment extends Fragment implements MediaPlayer.OnCompletion
                 }
             }
         });
+        prevButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getActivity().getApplicationContext(), LauncherActivity.class);
+                startActivity(i);
+                getActivity().finish();
+            }
+        });
     }
 
 
@@ -119,7 +128,6 @@ public class PlayerFragment extends Fragment implements MediaPlayer.OnCompletion
 
     public void setTurn(Turn turn) {
         this.turn = turn;
-        turn.getSong().getAlbum_image();
     }
 
     private void primaryProgressBarUpdater() {

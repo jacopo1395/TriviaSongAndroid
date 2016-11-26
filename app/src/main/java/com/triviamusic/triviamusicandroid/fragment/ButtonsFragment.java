@@ -82,33 +82,35 @@ public class ButtonsFragment extends Fragment {
     }
 
 
+//
+//    private void setButtons() {
+//        Random random = new Random();
+//        int n = random.nextInt(4) + 1;
+//        if (n == 1) {
+//            button1.setText(turn.getSongs().get(turn.getNumberSong()).getTitle());
+//            rightButton = button1;
+//        } else button1.setText(possibility1);
+//        if (n == 2) {
+//            button2.setText(turn.getSongs().get(turn.getNumberSong()).getTitle());
+//            rightButton = button2;
+//        } else button2.setText(possibility2);
+//        if (n == 3) {
+//            button3.setText(turn.getSongs().get(turn.getNumberSong()).getTitle());
+//            rightButton = button3;
+//        } else button3.setText(possibility3);
+//        if (n == 4) {
+//            button4.setText(turn.getSongs().get(turn.getNumberSong()).getTitle());
+//            rightButton = button4;
+//        } else button4.setText(possibility4);
+//    }
 
-    private void setButtons() {
-        Random random = new Random();
-        int n = random.nextInt(4) + 1;
-        if (n == 1) {
-            button1.setText(turn.getSongs().get(turn.getNumberSong()).getTitle());
-            rightButton = button1;
-        } else button1.setText(possibility1);
-        if (n == 2) {
-            button2.setText(turn.getSongs().get(turn.getNumberSong()).getTitle());
-            rightButton = button2;
-        } else button2.setText(possibility2);
-        if (n == 3) {
-            button3.setText(turn.getSongs().get(turn.getNumberSong()).getTitle());
-            rightButton = button3;
-        } else button3.setText(possibility3);
-        if (n == 4) {
-            button4.setText(turn.getSongs().get(turn.getNumberSong()).getTitle());
-            rightButton = button4;
-        } else button4.setText(possibility4);
-    }
 
-
-    public void setPossibilities(String[] poss) {
+    public void setPossibilities() {
         String title = turn.getSongs().get(turn.getNumberSong()).getTitle();
         Random random = new Random();
         int n = random.nextInt(4);
+        String[] poss = turn.getSong().getPossibilities();
+        for (int i = 0; i < 4; i++) System.out.println(poss[i]);
         poss[n]=title;
         setText(poss);
         if(n==0) rightButton=button1;
@@ -188,6 +190,7 @@ public class ButtonsFragment extends Fragment {
     }
 
     public void setText(String[] text) {
+        System.out.println(button1);
         button1.setText(text[0]);
         button2.setText(text[1]);
         button3.setText(text[2]);

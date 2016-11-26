@@ -19,7 +19,10 @@ public class Song implements Parcelable {
     private String album_image;
     private int track_number;
 
-    private String[] possibilities;
+    private String possibility1;
+    private String possibility2;
+    private String possibility3;
+    private String possibility4;
 
     public Song(JSONObject result) {
         try {
@@ -30,10 +33,36 @@ public class Song implements Parcelable {
             this.album_id =result.getString("album_id");
             this.album_image =result.getString("album_image");
             this.track_number = result.getInt("track_number");
+            this.possibility1 = new String();
+            this.possibility2 = new String();
+            this.possibility3 = new String();
+            this.possibility4 = new String();
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+
+
+    public void setPossibilities(JSONObject result) {
+        try {
+            if (result.getString("status").equals("error")) {
+                return;
+            }
+            int n = result.getInt("total");
+            String[] poss = new String[n];
+            for (int i = 0; i < n; i++) {
+                String x = "possibility" + (i + 1);
+                poss[i] = result.getString(x);
+            }
+            possibility1 = poss[0];
+            possibility2 = poss[1];
+            possibility3 = poss[2];
+            possibility4 = poss[3];
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
     }
 
     public String getTitle() {
@@ -92,6 +121,38 @@ public class Song implements Parcelable {
         this.track_number = track_number;
     }
 
+    public String getPossibility1() {
+        return possibility1;
+    }
+
+    public void setPossibility1(String possibility1) {
+        this.possibility1 = possibility1;
+    }
+
+    public String getPossibility2() {
+        return possibility2;
+    }
+
+    public void setPossibility2(String possibility2) {
+        this.possibility2 = possibility2;
+    }
+
+    public String getPossibility3() {
+        return possibility3;
+    }
+
+    public void setPossibility3(String possibility3) {
+        this.possibility3 = possibility3;
+    }
+
+    public String getPossibility4() {
+        return possibility4;
+    }
+
+    public void setPossibility4(String possibility4) {
+        this.possibility4 = possibility4;
+    }
+
     @Override
     public String toString() {
         return "Song{" +
@@ -123,6 +184,10 @@ public class Song implements Parcelable {
         parcel.writeString(album_id);
         parcel.writeString(album_image);
         parcel.writeInt(track_number);
+        parcel.writeString(possibility1);
+        parcel.writeString(possibility2);
+        parcel.writeString(possibility3);
+        parcel.writeString(possibility4);
     }
 
     public static final Parcelable.Creator<Song> CREATOR
@@ -144,5 +209,19 @@ public class Song implements Parcelable {
         album_id = in.readString();
         album_image = in.readString();
         track_number = in.readInt();
+        possibility1 = in.readString();
+        possibility2 = in.readString();
+        possibility3 = in.readString();
+        possibility4 = in.readString();
+    }
+
+    public String[] getPossibilities() {
+        String[] s = new String[4];
+        s[0] = possibility1;
+        s[1] = possibility2;
+        s[2] = possibility3;
+        s[3] = possibility4;
+        return s;
+
     }
 }

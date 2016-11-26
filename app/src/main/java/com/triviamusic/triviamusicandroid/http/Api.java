@@ -8,12 +8,18 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.RequestFuture;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.triviamusic.triviamusicandroid.resources.Song;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.LinkedList;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 /**
  * Created by jadac_000 on 05/11/2016.
@@ -108,6 +114,28 @@ public class Api {
 
         String url = "http://" + SERVER_IP + ":3000/possibilities/" + song.getAlbumId() + "/" + song.getTrack_number();
         call(url, callback);
+    }
+
+    public JSONObject possibilitiesSync(Song song) {
+        String url = "http://" + SERVER_IP + ":3000/possibilities/" + song.getAlbumId() + "/" + song.getTrack_number();
+
+        RequestFuture<JSONObject> future = RequestFuture.newFuture();
+        JsonObjectRequest request = new JsonObjectRequest(url, null, future, future);
+        LinkedList<JsonObjectRequest> requestQueue = new LinkedList<>();
+        requestQueue.add(request);
+
+
+        try {
+            JSONObject response = future.get(20, TimeUnit.SECONDS); // Blocks for at most 10 seconds.
+            return response;
+        } catch (InterruptedException e) {
+            // Exception handling
+        } catch (ExecutionException e) {
+            // Exception handling
+        } catch (TimeoutException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public void setOffset(int i) {
