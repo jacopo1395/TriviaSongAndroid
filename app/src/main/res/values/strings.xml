@@ -29,6 +29,11 @@
     <string name="soul">Soul</string>
     <string name="jazz">Jazz</string>
     <string name="hiphop">HipHop</string>
+    <string name="username">username</string>
+    <string name="password">password</string>
+    <string name="login">login</string>
+    <string name="signup">signup</string>
+    <string name="forgot_password">forgot password</string>
 
 
 </resources>
