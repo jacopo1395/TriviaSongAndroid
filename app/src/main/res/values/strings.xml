@@ -34,6 +34,7 @@
     <string name="login">login</string>
     <string name="signup">signup</string>
     <string name="forgot_password">forgot password</string>
+    <string name="email">email</string>
 
 
 </resources>
