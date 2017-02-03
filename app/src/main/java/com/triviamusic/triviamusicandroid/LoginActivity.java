@@ -59,17 +59,14 @@ public class LoginActivity extends AppCompatActivity {
                 if (user != null) {
                     // User is signed in
                     Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
-                    Intent intent = new Intent(getApplicationContext(), CategoryActivity.class);
+                    Intent intent = new Intent(getApplicationContext(), LauncherActivity.class);
                     startActivity(intent);
                     finish();
                 } else {
                     // User is signed out
                     Log.d(TAG, "onAuthStateChanged:signed_out");
-                    Snackbar snackbar = Snackbar
-                            .make(findViewById(android.R.id.content), "Welcome to AndroidHive", Snackbar.LENGTH_LONG);
-                    snackbar.show();
+
                 }
-                // ...
             }
         };
     }

@@ -33,12 +33,12 @@ public class LauncherActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_launcher);
 
-
+        context = getApplicationContext();
         profile = (Button) findViewById(R.id.profile);
         play = (Button) findViewById(R.id.play);
         logout = (Button) findViewById(R.id.logout);
 
-
+        mAuth = FirebaseAuth.getInstance();
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {

@@ -47,12 +47,13 @@ public class SignupActivity extends AppCompatActivity {
                     Snackbar.make(view, getResources().getString(R.string.password_error), Snackbar.LENGTH_SHORT);
                 } else {
                     String regex = "[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}";
-                    if (Pattern.matches(regex, email_text)) {
+                    if (!Pattern.matches(regex, email_text)) {
                         Snackbar.make(view, getResources().getString(R.string.email_error), Snackbar.LENGTH_SHORT);
                     } else {
                         signUp(email_text, password_text);
                     }
                 }
+                System.out.println("fine");
             }
         });
         mAuth = FirebaseAuth.getInstance();
@@ -63,7 +64,7 @@ public class SignupActivity extends AppCompatActivity {
                 if (user != null) {
                     // User is signed in
                     Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
-                    Intent intent = new Intent(getApplicationContext(), CategoryActivity.class);
+                    Intent intent = new Intent(getApplicationContext(), LauncherActivity.class);
                     startActivity(intent);
                     finish();
                 } else {
@@ -79,6 +80,7 @@ public class SignupActivity extends AppCompatActivity {
     }
 
     private void signUp(String email_text, String password_text) {
+        System.out.println(email_text + " " + password_text);
         mAuth.createUserWithEmailAndPassword(email_text, password_text)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -91,9 +93,12 @@ public class SignupActivity extends AppCompatActivity {
                         if (!task.isSuccessful()) {
                             Toast.makeText(SignupActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
+                        } else {
+                            Intent i = new Intent(getApplicationContext(), LauncherActivity.class);
+                            startActivity(i);
+                            finish();
                         }
 
-                        // ...
                     }
                 });
     }

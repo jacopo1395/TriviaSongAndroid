@@ -41,6 +41,8 @@
     <string name="profile">profile</string>
     <string name="play">play</string>
     <string name="logout">logout</string>
+    <string name="leaderboards">Leaderboards</string>
+    <string name="record">record</string>
 
 
 </resources>

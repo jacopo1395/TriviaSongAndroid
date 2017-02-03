@@ -17,33 +17,17 @@
         android:id="@+id/play" />
 
     <Button
+        android:text="@string/leaderboards"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/leaderboards" />
+
+    <Button
         android:text="@string/logout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/logout" />
 
-    <Button
-        android:text="login"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/login" />
 
-    <Button
-        android:text="main"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/main" />
-
-    <Button
-        android:text="multi"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/multi" />
-
-    <Button
-        android:text="@string/categories"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/categories" />
 
 </LinearLayout>
