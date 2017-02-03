@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.triviamusic.triviamusicandroid.resources.Categories;
 
 /**
  * Created by jadac_000 on 19/01/2017.
@@ -58,7 +59,7 @@ public class LoginActivity extends AppCompatActivity {
                 if (user != null) {
                     // User is signed in
                     Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
-                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    Intent intent = new Intent(getApplicationContext(), CategoryActivity.class);
                     startActivity(intent);
                     finish();
                 } else {

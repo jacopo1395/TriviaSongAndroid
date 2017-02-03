@@ -4,6 +4,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <Button
+        android:text="@string/profile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/profile" />
+
+    <Button
+        android:text="@string/play"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/play" />
+
+    <Button
+        android:text="@string/logout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/logout" />
 
     <Button
         android:text="login"
