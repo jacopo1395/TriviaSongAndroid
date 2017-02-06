@@ -16,7 +16,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.triviamusic.triviamusicandroid.resources.Categories;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.regex.Pattern;
 
@@ -94,6 +95,11 @@ public class SignupActivity extends AppCompatActivity {
                             Toast.makeText(SignupActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
                         } else {
+                            DatabaseReference mDatabase;
+                            mDatabase = FirebaseDatabase.getInstance().getReference();
+                            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                            long x = 0;
+                            mDatabase.child("users").child(user.getUid()).child("record").setValue(x);
                             Intent i = new Intent(getApplicationContext(), LauncherActivity.class);
                             startActivity(i);
                             finish();

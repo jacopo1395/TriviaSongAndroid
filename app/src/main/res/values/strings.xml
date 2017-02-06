@@ -43,6 +43,7 @@
     <string name="logout">logout</string>
     <string name="leaderboards">Leaderboards</string>
     <string name="record">record</string>
+    <string name="score">score</string>
 
 
 </resources>

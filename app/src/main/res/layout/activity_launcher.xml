@@ -28,6 +28,12 @@
         android:layout_height="wrap_content"
         android:id="@+id/logout" />
 
+    <!--<Button-->
+        <!--android:text="score"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:id="@+id/score" />-->
+
 
 
 </LinearLayout>

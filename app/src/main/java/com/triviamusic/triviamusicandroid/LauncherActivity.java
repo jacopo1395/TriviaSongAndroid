@@ -37,6 +37,7 @@ public class LauncherActivity extends AppCompatActivity {
         profile = (Button) findViewById(R.id.profile);
         play = (Button) findViewById(R.id.play);
         logout = (Button) findViewById(R.id.logout);
+//        Button score = (Button) findViewById(R.id.score);
 
         mAuth = FirebaseAuth.getInstance();
         mAuthListener = new FirebaseAuth.AuthStateListener() {
@@ -79,6 +80,15 @@ public class LauncherActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
+//        score.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent i = new Intent(context, ScoreActivity.class);
+//                i.putExtra("score",2);
+//                startActivity(i);
+//            }
+//        });
 
 
     }

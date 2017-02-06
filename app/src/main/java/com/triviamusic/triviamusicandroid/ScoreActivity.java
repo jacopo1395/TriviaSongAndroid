@@ -1,6 +1,8 @@
 package com.triviamusic.triviamusicandroid;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.BundleCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.TextView;
@@ -14,26 +16,30 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
- * Created by jadac_000 on 03/02/2017.
+ * Created by Jacopo on 04/02/2017.
  */
-public class ProfileActivity extends AppCompatActivity {
-    private String TAG = "TAG";
+public class ScoreActivity extends AppCompatActivity {
+
+    private int score;
     private FirebaseUser user;
     private FirebaseDatabase database;
     private DatabaseReference myRef;
 
-
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile);
-        TextView mail = (TextView) findViewById(R.id.email);
-        final TextView record = (TextView) findViewById(R.id.record);
-        user = FirebaseAuth.getInstance().getCurrentUser();
-        mail.setText(user.getEmail());
-        // Write a message to the database
+        setContentView(R.layout.activity_score);
+        Intent intent = getIntent();
+        score=intent.getIntExtra("score",0);
+        TextView point = (TextView) findViewById(R.id.score);
+        point.setText(String.valueOf(score));
+
         database = FirebaseDatabase.getInstance();
+        user =  FirebaseAuth.getInstance().getCurrentUser();
         myRef = database.getReference().child("users").child(user.getUid()).child("record");
 
         // Read from the database
@@ -42,15 +48,21 @@ public class ProfileActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
-                String value =String.valueOf(dataSnapshot.getValue(Long.class));
-                Log.d(TAG, "Value is: " + value);
-                record.setText(value);
+                Long record = dataSnapshot.getValue(Long.class);
+                if (score > record){
+                    user =  FirebaseAuth.getInstance().getCurrentUser();
+                    Map<String, Object> childUpdates = new HashMap<>();
+                    childUpdates.put("/users/" + user.getUid()+"/record", score);
+                    database.getReference().updateChildren(childUpdates);
+
+                }
+
+
             }
 
             @Override
             public void onCancelled(DatabaseError error) {
                 // Failed to read value
-                Log.w(TAG, "Failed to read value.", error.toException());
             }
         });
 
