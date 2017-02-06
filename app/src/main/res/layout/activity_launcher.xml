@@ -6,26 +6,40 @@
 
     <Button
         android:text="@string/profile"
+        android:id="@+id/profile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/profile" />
+        android:layout_gravity="center"
+        android:layout_margin="16dp"
+        android:background="@drawable/custom_button"
+        android:textColor="@color/my_white" />
+
 
     <Button
         android:text="@string/play"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:background="@drawable/custom_button"
+        android:textColor="@color/my_white"
         android:id="@+id/play" />
 
     <Button
         android:text="@string/leaderboards"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:background="@drawable/custom_button"
+        android:textColor="@color/my_white"
         android:id="@+id/leaderboards" />
 
     <Button
         android:text="@string/logout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:background="@drawable/custom_button"
+        android:textColor="@color/my_white"
         android:id="@+id/logout" />
 
     <!--<Button-->

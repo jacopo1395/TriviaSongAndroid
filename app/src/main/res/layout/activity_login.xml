@@ -102,15 +102,15 @@
 
             </android.support.v7.widget.CardView>
 
-            <Button
-                android:id="@+id/mainLoginFacebook"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="27dp"
-                android:text="facebook"
-                android:background="@color/blue"
-                android:textColor="#ffffff" />
+            <!--<Button-->
+                <!--android:id="@+id/mainLoginFacebook"-->
+                <!--android:layout_width="fill_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="center_horizontal"-->
+                <!--android:layout_marginTop="27dp"-->
+                <!--android:text="facebook"-->
+                <!--android:background="@color/blue"-->
+                <!--android:textColor="#ffffff" />-->
 
 
             <RelativeLayout

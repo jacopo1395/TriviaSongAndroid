@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.AsyncTask;
@@ -84,10 +85,28 @@ public class PlayerFragment extends Fragment implements MediaPlayer.OnCompletion
             public void onClick(View view) {
                 if (mediaPlayer.isPlaying()) {
                     mediaPlayer.pause();
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        pauseButton.setImageDrawable ( getResources().getDrawable(R.drawable.ic_play_arrow_white_24dp, getActivity().getTheme()));
+                    }
+                    else{
+                        pauseButton.setImageDrawable ( getResources().getDrawable(R.drawable.ic_play_arrow_white_24dp));
+                    }
                 } else {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        pauseButton.setImageDrawable ( getResources().getDrawable(R.drawable.ic_pause_white_24dp, getActivity().getTheme()));
+                    }
+                    else{
+                        pauseButton.setImageDrawable ( getResources().getDrawable(R.drawable.ic_pause_white_24dp));
+                    }
                     mediaPlayer.start();
                     primaryProgressBarUpdater();
                 }
+            }
+        });
+        prevButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getActivity().finish();
             }
         });
     }
