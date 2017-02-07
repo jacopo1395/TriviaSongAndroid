@@ -27,6 +27,7 @@ public class LauncherActivity extends AppCompatActivity {
     private Button profile;
     private Button play;
     private Button logout;
+    private Button leaderboard;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +38,8 @@ public class LauncherActivity extends AppCompatActivity {
         profile = (Button) findViewById(R.id.profile);
         play = (Button) findViewById(R.id.play);
         logout = (Button) findViewById(R.id.logout);
-//        Button score = (Button) findViewById(R.id.score);
+        leaderboard = (Button) findViewById(R.id.leaderboards);
+        Button score = (Button) findViewById(R.id.score);
 
         mAuth = FirebaseAuth.getInstance();
         mAuthListener = new FirebaseAuth.AuthStateListener() {
@@ -81,14 +83,23 @@ public class LauncherActivity extends AppCompatActivity {
             }
         });
 
-//        score.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent i = new Intent(context, ScoreActivity.class);
-//                i.putExtra("score",2);
-//                startActivity(i);
-//            }
-//        });
+        leaderboard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(context, LeaderBoardActivity.class);
+                startActivity(i);
+            }
+        });
+
+        score.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(context, ScoreActivity.class);
+                i.putExtra("score",4);
+                i.putExtra("category","pop");
+                startActivity(i);
+            }
+        });
 
 
     }

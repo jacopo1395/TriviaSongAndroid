@@ -18,6 +18,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.triviamusic.triviamusicandroid.resources.Records;
+import com.triviamusic.triviamusicandroid.resources.Records;
+import com.triviamusic.triviamusicandroid.resources.User;
 
 import java.util.regex.Pattern;
 
@@ -33,7 +36,7 @@ public class SignupActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.signup_login);
+        setContentView(R.layout.activity_signup);
         final EditText email = (EditText) findViewById(R.id.edit_email);
         final EditText password = (EditText) findViewById(R.id.edit_password);
         final EditText password_confirm = (EditText) findViewById(R.id.edit_password_confirm);
@@ -72,15 +75,15 @@ public class SignupActivity extends AppCompatActivity {
                     // User is signed out
                     Log.d(TAG, "onAuthStateChanged:signed_out");
                 }
-                // ...
+
             }
         };
-        // ...
+
 
 
     }
 
-    private void signUp(String email_text, String password_text) {
+    private void signUp(final String email_text, String password_text) {
         System.out.println(email_text + " " + password_text);
         mAuth.createUserWithEmailAndPassword(email_text, password_text)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -98,8 +101,8 @@ public class SignupActivity extends AppCompatActivity {
                             DatabaseReference mDatabase;
                             mDatabase = FirebaseDatabase.getInstance().getReference();
                             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                            long x = 0;
-                            mDatabase.child("users").child(user.getUid()).child("record").setValue(x);
+                            User u = new User(email_text,"name");
+                            mDatabase.child("users").child(user.getUid()).setValue(u);
                             Intent i = new Intent(getApplicationContext(), LauncherActivity.class);
                             startActivity(i);
                             finish();

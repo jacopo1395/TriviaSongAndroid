@@ -1,18 +1,16 @@
 package com.triviamusic.triviamusicandroid;
 
-import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.triviamusic.triviamusicandroid.adapter.CategoriesAdapter;
 import com.triviamusic.triviamusicandroid.http.Api;
 import com.triviamusic.triviamusicandroid.resources.Turn;
 
@@ -69,7 +67,7 @@ public class CategoryActivity extends AppCompatActivity {
     class MyClickListener implements AdapterView.OnItemClickListener {
         @Override
         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-            String s = categories[(int) l];
+            final String s = categories[(int) l];
             api = new Api(getApplicationContext());
             api.songs(s, new Api.VolleyCallback() {
                 @Override
@@ -85,6 +83,7 @@ public class CategoryActivity extends AppCompatActivity {
                     turn = new Turn(result);
                     Intent in = new Intent(CategoryActivity.this, MainActivity.class);
                     in.putExtra("turn", turn);
+                    in.putExtra("category",s);
                     startActivity(in);
                     finish();
                 }

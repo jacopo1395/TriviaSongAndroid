@@ -1,4 +1,4 @@
-package com.triviamusic.triviamusicandroid;
+package com.triviamusic.triviamusicandroid.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -6,6 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+
+import com.triviamusic.triviamusicandroid.R;
 
 /**
  * Created by jadac_000 on 25/11/2016.
@@ -45,7 +47,7 @@ public class CategoriesAdapter extends BaseAdapter {
         if (row == null) {
             //se la convertView di quest'immagine è nulla la inizializzo
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            row = inflater.inflate(R.layout.category_item, viewGroup, false);
+            row = inflater.inflate(R.layout.item_category, viewGroup, false);
 
         }
 

@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity implements ButtonsFragment.B
     public Context context;
     private Api api;
 
-    public String category = "rock";
+    public String category;
 
     private Turn turn;
     private int points = 0;
@@ -59,6 +59,7 @@ public class MainActivity extends AppCompatActivity implements ButtonsFragment.B
             flag = true;
             Intent intent = getIntent();
             turn = intent.getParcelableExtra("turn");
+            category = intent.getStringExtra("category");
             getTurn();
         }
     }
@@ -147,6 +148,7 @@ public class MainActivity extends AppCompatActivity implements ButtonsFragment.B
         else{
             Intent i = new Intent(context, ScoreActivity.class);
             i.putExtra("score", this.points);
+            i.putExtra("category",this.category);
             startActivity(i);
             finish();
         };
@@ -168,6 +170,7 @@ public class MainActivity extends AppCompatActivity implements ButtonsFragment.B
         Log.d("main", "save");
         savedInstanceState.putBoolean("flag", flag);
         savedInstanceState.putParcelable("turn", turn);
+        savedInstanceState.putString("category", category);
         //savedInstanceState.putInt("turnround",turn.getNumberSong());
         savedInstanceState.putInt("points", points);
         savedInstanceState.putInt("round", round);
@@ -191,6 +194,7 @@ public class MainActivity extends AppCompatActivity implements ButtonsFragment.B
 
         flag = savedInstanceState.getBoolean("flag");
         turn = savedInstanceState.getParcelable("turn");
+        category = savedInstanceState.getString("category");
 
         points = savedInstanceState.getInt("points");
         round = savedInstanceState.getInt("round");

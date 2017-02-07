@@ -29,6 +29,7 @@
         <activity android:name=".ProfileActivity"></activity>
         <activity android:name=".LauncherActivity"></activity>
         <activity android:name=".ScoreActivity"></activity>
+        <activity android:name=".LeaderBoardActivity"></activity>
 
     </application>
 
