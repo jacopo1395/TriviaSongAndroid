@@ -19,10 +19,12 @@ import java.util.Map;
 
 
 public class RecordAdapter extends RecyclerView.Adapter<RecordAdapter.ViewHolder> {
+    private final String mCat;
     private ArrayList<User> mDataset;
 
-    public RecordAdapter(List<User> myDataset) {
+    public RecordAdapter(List<User> myDataset, String cat) {
         mDataset = (ArrayList<User>) myDataset;
+        mCat = cat;
     }
 
     // Provide a reference to the views for each data item
@@ -63,9 +65,13 @@ public class RecordAdapter extends RecyclerView.Adapter<RecordAdapter.ViewHolder
         holder.mail.setText(mDataset.get(position).email);
         if(mDataset.get(position).record!=null) {
             Map m = mDataset.get(position).record.scores;
-            if (m != null) {
-                holder.category.setText(m.get("rock").toString());
-                holder.category.setText(m.get("rock").toString());
+            if (m != null && m.get(mCat)!=null) {
+                holder.score.setText(m.get(mCat).toString());
+                holder.category.setText(mCat);
+            }
+            else{
+                holder.score.setText("0");
+                holder.category.setText(mCat);
             }
         }
 

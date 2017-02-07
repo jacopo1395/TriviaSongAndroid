@@ -32,7 +32,10 @@
             android:name=".ScoreActivity"
             android:theme="@style/AppThemeNoActionBar">
         </activity>
-        <activity android:name=".LeaderBoardActivity"></activity>
+        <activity
+            android:name=".LeaderBoardActivity"
+            android:theme="@style/AppThemeNoActionBar"
+            ></activity>
 
     </application>
 

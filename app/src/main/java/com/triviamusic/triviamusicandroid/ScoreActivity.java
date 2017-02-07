@@ -32,12 +32,13 @@ public class ScoreActivity extends AppCompatActivity {
     private DatabaseReference myRef;
     private String category;
     private int right;
+    private DatabaseReference rec;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_score);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Intent intent = getIntent();
         point = intent.getIntExtra("score", 0);
         right = intent.getIntExtra("right", 0);

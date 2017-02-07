@@ -29,4 +29,20 @@ public class Categories {
     public ArrayList<String> getArrayList(){
         return new ArrayList<String>(Arrays.asList(categories));
     }
+
+    public static String get(String s) {
+        if(s.equals("Rock")) return "rock";
+        if(s.equals("Metal")) return "metal";
+        if(s.equals("Pop")) return "pop";
+        if(s.equals("Indie/Alternative")) return "indie_alt";
+        if(s.equals("EDM Dance")) return "edm_dance";
+        if(s.equals("RnB")) return "rnb";
+        if(s.equals("County")) return "county";
+        if(s.equals("Folk Americana")) return "folk_americana";
+        if(s.equals("Soul")) return "soul";
+        if(s.equals("Jazz")) return "jazz";
+        if(s.equals("Blues")) return "blues";
+        if(s.equals("HipHop")) return "hiphop";
+        return "rock";
+    }
 }

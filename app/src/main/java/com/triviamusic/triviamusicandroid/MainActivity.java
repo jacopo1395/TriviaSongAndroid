@@ -112,7 +112,10 @@ public class MainActivity extends AppCompatActivity implements ButtonsFragment.B
                     String[] poss = new String[n];
                     for (int i = 0; i < n; i++) {
                         String x = "possibility" + (i + 1);
-                        poss[i] = result.getString(x);
+                        if(result.getString(x).equals(turn.getSong().getTitle()))
+                            poss[i] = result.getString("possibility5");
+                        else
+                            poss[i] = result.getString(x);
                     }
                     fragment2.setPossibilities(poss);
                     fragment1.setPlayer();
