@@ -4,13 +4,9 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -39,7 +35,7 @@ public class MainActivity extends AppCompatActivity implements ButtonsFragment.B
     private FragmentTransaction ft;
     private TextView pointView;
     private TextView roundView;
-    private boolean flag = true;
+    private boolean flag;
 
 
     @Override
@@ -58,10 +54,11 @@ public class MainActivity extends AppCompatActivity implements ButtonsFragment.B
 
         }
 
-        if (flag) {
-            flag = false;
+        if (!flag) {
+            System.out.println("flag " + flag);
+            flag = true;
             Intent intent = getIntent();
-            turn=intent.getParcelableExtra("turn");
+            turn = intent.getParcelableExtra("turn");
             getTurn();
         }
     }
@@ -115,6 +112,7 @@ public class MainActivity extends AppCompatActivity implements ButtonsFragment.B
                     }
                     fragment2.setPossibilities(poss);
                     fragment1.setPlayer();
+                    System.out.println("main start");
                     fragment1.start();
 
                 } catch (JSONException e) {
@@ -161,6 +159,9 @@ public class MainActivity extends AppCompatActivity implements ButtonsFragment.B
         pointView.setText(String.valueOf(points));
     }
 
+    public boolean isFlag() {
+        return flag;
+    }
 
     @Override
     protected void onSaveInstanceState(Bundle savedInstanceState) {
@@ -173,6 +174,8 @@ public class MainActivity extends AppCompatActivity implements ButtonsFragment.B
 
         PlayerFragment pf = (PlayerFragment) fm.findFragmentByTag("1");
         savedInstanceState.putInt("seconds", pf.getSeconds());
+        savedInstanceState.putInt("position", pf.getPosition());
+        savedInstanceState.putBoolean("flag", pf.isFlag());
 
         ButtonsFragment bf = (ButtonsFragment) fm.findFragmentByTag("2");
         savedInstanceState.putStringArray("possibilities", bf.getPossibilities());
@@ -199,6 +202,8 @@ public class MainActivity extends AppCompatActivity implements ButtonsFragment.B
         PlayerFragment pf = (PlayerFragment) fm.findFragmentByTag("1");
         pf.setTurn(turn);
         pf.setSeconds(savedInstanceState.getInt("seconds"));
+        pf.setPosition(savedInstanceState.getInt("position"));
+        pf.setFlag(savedInstanceState.getBoolean("flag"));
 
         ButtonsFragment bf = (ButtonsFragment) fm.findFragmentByTag("2");
         bf.setTurn(turn);

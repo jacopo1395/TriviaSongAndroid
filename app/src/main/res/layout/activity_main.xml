@@ -68,7 +68,7 @@
     </android.support.v7.widget.Toolbar>
 
     <!--TODO: usare FrameLayout -->
-    <fragment
+    <FrameLayout
         android:name="com.triviamusic.triviamusicandroid.fragment.PlayerFragment"
         android:id="@+id/player_fragment"
         android:layout_width="match_parent"
@@ -77,7 +77,7 @@
         tools:layout="@layout/fragment_main_player" />
 
     <!--TODO: usare FrameLayout -->
-    <fragment
+    <FrameLayout
         android:name="com.triviamusic.triviamusicandroid.fragment.ButtonsFragment"
         android:id="@+id/buttons_fragment"
         android:layout_width="match_parent"
