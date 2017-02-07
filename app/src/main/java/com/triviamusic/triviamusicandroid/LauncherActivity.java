@@ -39,8 +39,7 @@ public class LauncherActivity extends AppCompatActivity {
         play = (Button) findViewById(R.id.play);
         logout = (Button) findViewById(R.id.logout);
         leaderboard = (Button) findViewById(R.id.leaderboards);
-        Button score = (Button) findViewById(R.id.score);
-
+//        Button score = (Button) findViewById(R.id.score);
         mAuth = FirebaseAuth.getInstance();
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -91,15 +90,15 @@ public class LauncherActivity extends AppCompatActivity {
             }
         });
 
-        score.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(context, ScoreActivity.class);
-                i.putExtra("score",4);
-                i.putExtra("category","pop");
-                startActivity(i);
-            }
-        });
+//        score.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent i = new Intent(context, ScoreActivity.class);
+//                i.putExtra("score",4);
+//                i.putExtra("category","pop");
+//                startActivity(i);
+//            }
+//        });
 
 
     }

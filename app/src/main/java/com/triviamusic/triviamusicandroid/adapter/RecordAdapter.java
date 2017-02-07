@@ -11,6 +11,7 @@ import com.triviamusic.triviamusicandroid.resources.User;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Jacopo on 07/02/2017.
@@ -29,11 +30,15 @@ public class RecordAdapter extends RecyclerView.Adapter<RecordAdapter.ViewHolder
     // you provide access to all the views for a data item in a view holder
     public static class ViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
-        public TextView mTextView;
+        public TextView mail;
+        public TextView category;
+        public TextView score;
 
         public ViewHolder(View v) {
             super(v);
-            mTextView = (TextView) v.findViewById(R.id.info_text);
+            mail = (TextView) v.findViewById(R.id.mail);
+            category = (TextView) v.findViewById(R.id.category);
+            score = (TextView) v.findViewById(R.id.score);
         }
     }
 
@@ -55,7 +60,14 @@ public class RecordAdapter extends RecyclerView.Adapter<RecordAdapter.ViewHolder
     public void onBindViewHolder(ViewHolder holder, int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
-        holder.mTextView.setText(mDataset.get(position).email);
+        holder.mail.setText(mDataset.get(position).email);
+        if(mDataset.get(position).record!=null) {
+            Map m = mDataset.get(position).record.scores;
+            if (m != null) {
+                holder.category.setText(m.get("rock").toString());
+                holder.category.setText(m.get("rock").toString());
+            }
+        }
 
     }
 

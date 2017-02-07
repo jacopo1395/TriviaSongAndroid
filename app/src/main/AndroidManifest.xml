@@ -28,7 +28,10 @@
         <activity android:name=".SignupActivity"></activity>
         <activity android:name=".ProfileActivity"></activity>
         <activity android:name=".LauncherActivity"></activity>
-        <activity android:name=".ScoreActivity"></activity>
+        <activity
+            android:name=".ScoreActivity"
+            android:theme="@style/AppThemeNoActionBar">
+        </activity>
         <activity android:name=".LeaderBoardActivity"></activity>
 
     </application>

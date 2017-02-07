@@ -38,6 +38,7 @@ public class SignupActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
         final EditText email = (EditText) findViewById(R.id.edit_email);
+        final EditText name = (EditText) findViewById(R.id.edit_username);
         final EditText password = (EditText) findViewById(R.id.edit_password);
         final EditText password_confirm = (EditText) findViewById(R.id.edit_password_confirm);
         Button signup = (Button) findViewById(R.id.signup);
@@ -45,6 +46,7 @@ public class SignupActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String email_text = email.getText().toString();
+                String name_text = name.getText().toString();
                 String password_text = password.getText().toString();
                 String pass_conf_text = password_confirm.getText().toString();
                 if (!password_text.equals(pass_conf_text)) {
@@ -54,7 +56,7 @@ public class SignupActivity extends AppCompatActivity {
                     if (!Pattern.matches(regex, email_text)) {
                         Snackbar.make(view, getResources().getString(R.string.email_error), Snackbar.LENGTH_SHORT);
                     } else {
-                        signUp(email_text, password_text);
+                        signUp(name_text, email_text, password_text);
                     }
                 }
                 System.out.println("fine");
@@ -83,7 +85,7 @@ public class SignupActivity extends AppCompatActivity {
 
     }
 
-    private void signUp(final String email_text, String password_text) {
+    private void signUp(final String name, final String email_text, String password_text) {
         System.out.println(email_text + " " + password_text);
         mAuth.createUserWithEmailAndPassword(email_text, password_text)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -101,7 +103,7 @@ public class SignupActivity extends AppCompatActivity {
                             DatabaseReference mDatabase;
                             mDatabase = FirebaseDatabase.getInstance().getReference();
                             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                            User u = new User(email_text,"name");
+                            User u = new User(email_text, name);
                             mDatabase.child("users").child(user.getUid()).setValue(u);
                             Intent i = new Intent(getApplicationContext(), LauncherActivity.class);
                             startActivity(i);

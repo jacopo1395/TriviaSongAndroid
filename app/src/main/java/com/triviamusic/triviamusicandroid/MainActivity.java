@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity implements ButtonsFragment.B
 
     private Turn turn;
     private int points = 0;
+    private int point2 = 0;
     private int round = 0;
 
 
@@ -34,6 +35,7 @@ public class MainActivity extends AppCompatActivity implements ButtonsFragment.B
     private PlayerFragment fragment1;
     private FragmentTransaction ft;
     private TextView pointView;
+    private TextView point2View;
     private TextView roundView;
     private boolean flag;
 
@@ -67,6 +69,7 @@ public class MainActivity extends AppCompatActivity implements ButtonsFragment.B
 
     private void initView(Bundle savedInstanceState) {
         pointView = (TextView) findViewById(R.id.points);
+        point2View = (TextView) findViewById(R.id.point2);
         roundView = (TextView) findViewById(R.id.round);
 
         fm = getFragmentManager(); //if this statement is moved inside the if condition
@@ -98,7 +101,7 @@ public class MainActivity extends AppCompatActivity implements ButtonsFragment.B
     }
 
     private void getPossibilities() {
-        api.possibilities(this.turn.getSongs().get(turn.getNumberSong()), new Api.VolleyCallback() {
+        api.possibilities2(category, new Api.VolleyCallback() {
             @Override
             public void onSuccess(JSONObject result) {
                 try {
@@ -147,7 +150,8 @@ public class MainActivity extends AppCompatActivity implements ButtonsFragment.B
         if (turn.getNumberSong() < turn.getNumberOfSongs()) getPossibilities();
         else{
             Intent i = new Intent(context, ScoreActivity.class);
-            i.putExtra("score", this.points);
+            i.putExtra("right", this.points);
+            i.putExtra("score", this.point2);
             i.putExtra("category",this.category);
             startActivity(i);
             finish();
@@ -158,7 +162,9 @@ public class MainActivity extends AppCompatActivity implements ButtonsFragment.B
 
     public void addPoint() {
         this.points++;
-        pointView.setText(String.valueOf(points));
+        point2+= (fragment1.getSeconds() -fragment1.getPosition());
+        pointView.setText(String.valueOf(point2));
+        //point2View.setText(String.valueOf(point2));
     }
 
     public boolean isFlag() {

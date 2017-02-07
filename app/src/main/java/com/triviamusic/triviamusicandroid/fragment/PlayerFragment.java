@@ -176,6 +176,7 @@ public class PlayerFragment extends Fragment implements MediaPlayer.OnCompletion
         return app.getMP().getCurrentPosition();
     }
 
+
     public void setPosition(int position) {
         Log.d("setPosition", String.valueOf(position));
         String link = turn.getSongs().get(turn.getNumberSong()).getLink();

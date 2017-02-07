@@ -110,6 +110,12 @@ public class Api {
         call(url, callback);
     }
 
+    public void possibilities2(String category, final VolleyCallback callback) {
+
+        String url = "http://" + SERVER_IP + ":3000/possibilities2/" + category;
+        call(url, callback);
+    }
+
     public void setOffset(int i) {
         this.offset=i;
     }

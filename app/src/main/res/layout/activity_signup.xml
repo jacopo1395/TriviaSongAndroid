@@ -40,7 +40,7 @@
                     android:textSize="20sp" />
 
 
-                <!--
+
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -50,7 +50,7 @@
 
                     <EditText
                         android:id="@+id/edit_username"
-                        android:hint="@string/username"
+                        android:hint="@string/name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
@@ -59,7 +59,7 @@
                         android:padding="10dp"/>
 
                 </android.support.design.widget.TextInputLayout>
-                -->
+
 
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"

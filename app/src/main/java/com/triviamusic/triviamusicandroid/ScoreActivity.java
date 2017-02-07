@@ -26,11 +26,12 @@ import java.util.Map;
  */
 public class ScoreActivity extends AppCompatActivity {
 
-    private long score;
+    private long point;
     private FirebaseUser user;
     private FirebaseDatabase database;
     private DatabaseReference myRef;
     private String category;
+    private int right;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -38,12 +39,14 @@ public class ScoreActivity extends AppCompatActivity {
         setContentView(R.layout.activity_score);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Intent intent = getIntent();
-        score = intent.getIntExtra("score", 0);
+        point = intent.getIntExtra("score", 0);
+        right = intent.getIntExtra("right", 0);
         category = intent.getStringExtra("category");
-        TextView point = (TextView) findViewById(R.id.score);
-        point.setText(String.valueOf(score));
+        TextView score = (TextView) findViewById(R.id.score);
+        TextView rightV = (TextView) findViewById(R.id.right);
+        score.setText(String.valueOf(point));
+        rightV.setText(String.valueOf(right));
         final Button ok = (Button) findViewById(R.id.ok);
-
         database = FirebaseDatabase.getInstance();
         user =  FirebaseAuth.getInstance().getCurrentUser();
         myRef = database.getReference().child("users").child(user.getUid()).child("records");
@@ -56,14 +59,12 @@ public class ScoreActivity extends AppCompatActivity {
                 // whenever data at this location is updated.
                 Records record = new Records();
                 Map m1 = (Map<String, Object>) dataSnapshot.getValue();
-                Map<String,Long> m = (Map<String, Long>) m1.get("scores");
-                System.out.println(m);
-                record.setScores(m);
 
-                if(m == null){
+
+                if(m1 == null){
                     record=new Records();
                     record.scores=new HashMap<String,Long>();
-                    record.scores.put(category,score);
+                    record.scores.put(category, point);
                     myRef.setValue(record);
                     ok.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -73,9 +74,12 @@ public class ScoreActivity extends AppCompatActivity {
                     });
                 }
                 else{
+                    Map<String,Long> m = (Map<String, Long>) m1.get("scores");
+                    System.out.println(m);
+                    record.setScores(m);
                     if (record.scores.get(category)==null){
                         System.out.println("null");
-                        record.addRecord(category,score);
+                        record.addRecord(category,point);
                         myRef.setValue(record);
                         ok.setOnClickListener(new View.OnClickListener() {
                             @Override
@@ -86,11 +90,19 @@ public class ScoreActivity extends AppCompatActivity {
                     }
                     else {
                         long n=(long)record.scores.get(category);
-                        if (score > n) {
+                        if (point > n) {
                             System.out.println("maggiore");
                             //user =  FirebaseAuth.getInstance().getCurrentUser();
-                            record.scores.put(category, score);
+                            record.scores.put(category, point);
                             myRef.setValue(record);
+                            ok.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    finish();
+                                }
+                            });
+                        }
+                        else{
                             ok.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
