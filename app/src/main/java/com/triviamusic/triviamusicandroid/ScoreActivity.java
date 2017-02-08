@@ -48,6 +48,7 @@ public class ScoreActivity extends AppCompatActivity {
         score.setText(String.valueOf(point));
         rightV.setText(String.valueOf(right));
         final Button ok = (Button) findViewById(R.id.ok);
+        ok.setAlpha((float) 0.4);
         database = FirebaseDatabase.getInstance();
         user =  FirebaseAuth.getInstance().getCurrentUser();
         myRef = database.getReference().child("users").child(user.getUid()).child("records");
@@ -67,6 +68,7 @@ public class ScoreActivity extends AppCompatActivity {
                     record.scores=new HashMap<String,Long>();
                     record.scores.put(category, point);
                     myRef.setValue(record);
+                    ok.setAlpha(1);
                     ok.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
@@ -82,6 +84,7 @@ public class ScoreActivity extends AppCompatActivity {
                         System.out.println("null");
                         record.addRecord(category,point);
                         myRef.setValue(record);
+                        ok.setAlpha(1);
                         ok.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
@@ -96,6 +99,7 @@ public class ScoreActivity extends AppCompatActivity {
                             //user =  FirebaseAuth.getInstance().getCurrentUser();
                             record.scores.put(category, point);
                             myRef.setValue(record);
+                            ok.setAlpha(1);
                             ok.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
@@ -104,6 +108,7 @@ public class ScoreActivity extends AppCompatActivity {
                             });
                         }
                         else{
+                            ok.setAlpha(1);
                             ok.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {

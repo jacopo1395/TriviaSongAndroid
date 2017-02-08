@@ -31,13 +31,16 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        TextView mail = (TextView) findViewById(R.id.email);
-        final TextView record = (TextView) findViewById(R.id.record);
+        final TextView mail = (TextView) findViewById(R.id.email);
+        final TextView name = (TextView) findViewById(R.id.name);
+
         user = FirebaseAuth.getInstance().getCurrentUser();
         mail.setText(user.getEmail());
+
+
         // Write a message to the database
         database = FirebaseDatabase.getInstance();
-        myRef = database.getReference().child("users").child(user.getUid()).child("record");
+        myRef = database.getReference().child("users").child(user.getUid()).child("username");
 
         // Read from the database
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -45,9 +48,9 @@ public class ProfileActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
-                String value =String.valueOf(dataSnapshot.getValue(Long.class));
+                String value =String.valueOf(dataSnapshot.getValue(String.class));
                 Log.d(TAG, "Value is: " + value);
-                record.setText(value);
+                name.setText(value);
             }
 
             @Override

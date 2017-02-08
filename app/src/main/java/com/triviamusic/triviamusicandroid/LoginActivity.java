@@ -42,7 +42,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
         TextView reset = (TextView) findViewById(R.id.reset);
-        signup.setOnClickListener(new View.OnClickListener() {
+        reset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), ResetPassword.class);

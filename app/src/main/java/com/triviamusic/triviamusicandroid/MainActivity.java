@@ -224,7 +224,11 @@ public class MainActivity extends AppCompatActivity implements ButtonsFragment.B
         int i = savedInstanceState.getInt("rightbutton");
         bf.setRightButtonPos(i);
     }
-
+    @Override
+    public void onBackPressed() {
+        fragment1.getMP().pause();
+       finish();
+    }
 
     @Override
     public void ClickEvent(Button pressedButton) {

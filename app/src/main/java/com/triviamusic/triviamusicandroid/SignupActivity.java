@@ -56,7 +56,12 @@ public class SignupActivity extends AppCompatActivity {
                     if (!Pattern.matches(regex, email_text)) {
                         Snackbar.make(view, getResources().getString(R.string.email_error), Snackbar.LENGTH_SHORT);
                     } else {
-                        signUp(name_text, email_text, password_text);
+                        if(password_text.length()<6){
+                            Snackbar.make(view, getResources().getString(R.string.password_error_len), Snackbar.LENGTH_SHORT);
+                        }
+                        else {
+                            signUp(name_text, email_text, password_text);
+                        }
                     }
                 }
                 System.out.println("fine");

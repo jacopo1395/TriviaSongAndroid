@@ -36,7 +36,8 @@
     <string name="forgot_password">forgot password</string>
     <string name="email">email</string>
     <string name="password_repeat">repeat password</string>
-    <string name="password_error">password passwords do not match</string>
+    <string name="password_error">passwords do not match</string>
+    <string name="password_error_len">min 6 characters</string>
     <string name="email_error">wrong email</string>
     <string name="profile">profile</string>
     <string name="play">play</string>
