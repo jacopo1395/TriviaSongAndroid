@@ -28,6 +28,7 @@
         <activity android:name=".SignupActivity"></activity>
         <activity android:name=".ProfileActivity"></activity>
         <activity android:name=".LauncherActivity"></activity>
+        <activity android:name=".ResetPassword"></activity>
         <activity
             android:name=".ScoreActivity"
             android:theme="@style/AppThemeNoActionBar">

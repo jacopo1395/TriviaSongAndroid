@@ -41,6 +41,15 @@ public class LoginActivity extends AppCompatActivity {
                 finish();
             }
         });
+        TextView reset = (TextView) findViewById(R.id.reset);
+        signup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), ResetPassword.class);
+                startActivity(intent);
+                finish();
+            }
+        });
         mAuth = FirebaseAuth.getInstance();
         Button login = (Button) findViewById(R.id.mainLogin);
         login.setOnClickListener(new View.OnClickListener() {
