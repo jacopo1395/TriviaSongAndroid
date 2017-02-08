@@ -74,6 +74,10 @@ public class RecordAdapter extends RecyclerView.Adapter<RecordAdapter.ViewHolder
                 holder.category.setText(mCat);
             }
         }
+        else{
+            holder.score.setText("0");
+            holder.category.setText(mCat);
+        }
 
     }
 

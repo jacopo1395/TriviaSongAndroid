@@ -5,7 +5,6 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -20,7 +19,6 @@ import com.triviamusic.triviamusicandroid.adapter.RecordAdapter;
 import com.triviamusic.triviamusicandroid.resources.Categories;
 import com.triviamusic.triviamusicandroid.resources.User;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -95,7 +93,7 @@ public class LeaderBoardActivity extends AppCompatActivity implements AdapterVie
                     System.out.println(entry.getKey() +" :: "+ entry.getValue());
                     users.add(new User((HashMap<String, Object>) entry.getValue()));
                 }
-                mAdapter = new RecordAdapter(users, cat);
+                mAdapter = new RecordAdapter(order(users, cat), cat);
                 recyclerview.setAdapter(mAdapter);
 
 
@@ -107,6 +105,34 @@ public class LeaderBoardActivity extends AppCompatActivity implements AdapterVie
 
             }
         });
+    }
+
+    public ArrayList<User> order(ArrayList<User> user, String cat) {
+        System.out.println(cat);
+        ArrayList<User> result = new ArrayList<>();
+        long max;
+        int j;
+        User r = null;
+        System.out.println(user.size());
+        while (!user.isEmpty()) {
+            max = user.get(0).getRecord().scores.get(cat);
+            r = user.get(0);
+            j=0;
+            for (int i = 0; i < user.size(); i++) {
+                if (user.get(i).getRecord().scores.get(cat) > max) {
+                    max = user.get(i).getRecord().scores.get(cat);
+                    r = user.get(i);
+                    j=i;
+                }
+            }
+            System.out.println(user.size());
+            System.out.println(r);
+            user.remove(j);
+            result.add(r);
+        }
+        System.out.println("fine");
+        return result;
+
     }
 
 

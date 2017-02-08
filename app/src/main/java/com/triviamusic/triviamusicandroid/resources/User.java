@@ -5,7 +5,6 @@ import com.google.firebase.database.IgnoreExtraProperties;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
 /**
  * Created by Jacopo on 07/02/2017.
@@ -31,10 +30,16 @@ public class User {
         email = (String)value.get("email");
         username = (String)value.get("name");
         Map m = (Map<String,Object>)value.get("records");
+        record = new Records();
         if(m!=null) {
-            record = new Records();
-            record.scores = (Map<String, Long>) m.get("scores");
+            Map<String, Long> m1 = (Map<String, Long>) m.get("scores");
+            for (Map.Entry<String, Long> entry : m1.entrySet()) {
+                System.out.println(entry.getKey() + " :: " + entry.getValue());
+                record.scores.put(entry.getKey(), entry.getValue());
+            }
         }
+
+
     }
 
     public Records getRecord() {
