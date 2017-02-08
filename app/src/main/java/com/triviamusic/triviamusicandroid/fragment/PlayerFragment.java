@@ -81,12 +81,8 @@ public class PlayerFragment extends Fragment implements MediaPlayer.OnCompletion
         pauseButton = (ImageView) view.findViewById(R.id.pause);
         prevButton = (ImageView) view.findViewById(R.id.preview);
 
-        nextButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                callback.ClickEvent("next");
-            }
-        });
+        nextButton.setOnClickListener(null);
+
         pauseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -226,6 +222,14 @@ public class PlayerFragment extends Fragment implements MediaPlayer.OnCompletion
         return this.app.getMP();
     }
 
+    public void setNext() {
+        nextButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                callback.ClickEvent("next");
+            }
+        });
+    }
 
 
     public interface PlayerCallback {

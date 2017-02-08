@@ -235,6 +235,7 @@ public class MainActivity extends AppCompatActivity implements ButtonsFragment.B
         //this.pressedButton=pressedButton;
         fragment1.stop();
         fragment1.showAlbum();
+        fragment1.setNext();
         if (checkAnswer(pressedButton)) {
             addPoint();
         }
