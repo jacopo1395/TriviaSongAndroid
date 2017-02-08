@@ -15,7 +15,7 @@ public class Categories {
             "indie_alt",
             "edm_dance",
             "rnb",
-            "county",
+            "country",
             "folk_americana",
             "soul",
             "jazz",
@@ -37,7 +37,7 @@ public class Categories {
         if(s.equals("Indie/Alternative")) return "indie_alt";
         if(s.equals("EDM Dance")) return "edm_dance";
         if(s.equals("RnB")) return "rnb";
-        if(s.equals("County")) return "county";
+        if(s.equals("Country")) return "country";
         if(s.equals("Folk Americana")) return "folk_americana";
         if(s.equals("Soul")) return "soul";
         if(s.equals("Jazz")) return "jazz";

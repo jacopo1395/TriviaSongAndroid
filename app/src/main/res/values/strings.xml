@@ -11,7 +11,7 @@
         <item>Indie/Alternative</item>
         <item>EDM Dance</item>
         <item>RnB</item>
-        <item>County</item>
+        <item>Country</item>
         <item>Folk Americana</item>
         <item>Soul</item>
         <item>Jazz</item>
@@ -24,7 +24,7 @@
     <string name="indie_alt">Indie/Alternative</string>
     <string name="edm_dance">EDM Dance</string>
     <string name="rnb">RnB</string>
-    <string name="county">Country</string>
+    <string name="country">Country</string>
     <string name="folk_americana">Folk Americana</string>
     <string name="soul">Soul</string>
     <string name="jazz">Jazz</string>
